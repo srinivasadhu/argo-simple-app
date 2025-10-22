@@ -1,0 +1,51 @@
+kubectl -n argocd apply -f - <<'YAML'
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.webhook.slackwf: |
+    url: $slack-trigger-url
+    method: POST
+    headers:
+    - name: Content-Type
+      value: application/json
+
+  subscriptions: |
+    - triggers: [on-sync-succeeded, on-sync-failed, on-health-degraded]
+      recipients:
+      - webhook:slackwf
+
+  template.wf-on-sync: |
+    webhook:
+      slackwf:
+        body: |
+          {
+            "text": "*{{.app.metadata.name}}* → {{.app.status.operationState.phase}}",
+            "details": "Sync={{.app.status.sync.status}} | Health={{.app.status.health.status}} | User={{.context.user}} | Time={{.context.time}}"
+          }
+
+  trigger.on-sync-succeeded: |
+    - send: [wf-on-sync]
+      when: app.status.operationState.phase == 'Succeeded'
+YAML
+--------
+
+kubectl -n argocd apply -f - <<'YAML'
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-notifications-secret
+  namespace: argocd
+type: Opaque
+stringData:
+  slack-trigger-url: "https://hooks.slack.com/triggers/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"
+YAML
+
+
+
+
+
+
+---
