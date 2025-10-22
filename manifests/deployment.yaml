@@ -4,6 +4,10 @@ metadata:
   name: hello-nginx
   labels:
     app: hello-nginx
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: "gitops"
+    notifications.argoproj.io/subscribe.on-update-started.slack: "gitops"
+    notifications.argoproj.io/subscribe.on-update-failed.slack: "gitops"
 spec:
   replicas: 1
   selector:
