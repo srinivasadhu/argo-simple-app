@@ -109,3 +109,20 @@ data:
     - description: Application update failed
       send: [app-update-failed]
       when: app.status.operationState.phase in ['Failed', 'Error', 'Unknown']
+
+
+kubectl -n argocd patch cm argocd-notifications-cm --type merge -p \
+'{"data":{"subscriptions":"- triggers: [on-sync-succeeded, on-sync-failed, on-health-degraded]\n  recipients:\n  - slack:#argocd-alerts\n"}}'
+
+APP=hello-nginx
+kubectl -n argocd annotate application $APP \
+  'notifications.argoproj.io/subscribe.on-sync-succeeded.slack:#argocd-alerts=' --overwrite
+kubectl -n argocd annotate application $APP \
+  'notifications.argoproj.io/subscribe.on-sync-failed.slack:#argocd-alerts=' --overwrite
+kubectl -n argocd annotate application $APP \
+  'notifications.argoproj.io/subscribe.on-health-degraded.slack:#argocd-alerts=' --overwrite
+  
+kubectl -n argocd rollout restart deployment argocd-notifications-controller
+kubectl -n argocd get pods | grep notifications
+
+argocd app sync hello-nginx --grpc-web
