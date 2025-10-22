@@ -40,7 +40,7 @@ metadata:
   namespace: argocd
 type: Opaque
 stringData:
-  slack-trigger-url: "https://hooks.slack.com/triggers/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"
+  slack-trigger-url: "https://hooks.slack.com/triggers/E7ee2c0f0d700b8"
 YAML
 
 
