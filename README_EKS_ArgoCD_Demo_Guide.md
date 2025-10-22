@@ -1,4 +1,4 @@
-# EKS Cluster Management Workflow using Argo CD — Full Demo Guide
+# EKS Cluster Management Workflow using Argo CD - Guide
 
 ## 1. Overview
 This guide explains how to manage Kubernetes workloads on **Amazon EKS** using **Argo CD** in a GitOps model.  
