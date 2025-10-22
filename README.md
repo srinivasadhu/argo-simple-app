@@ -114,12 +114,12 @@ data:
 kubectl -n argocd patch cm argocd-notifications-cm --type merge -p \
 '{"data":{"subscriptions":"- triggers: [on-sync-succeeded, on-sync-failed, on-health-degraded]\n  recipients:\n  - slack:#argocd-alerts\n"}}'
 
-APP=hello-nginx
-kubectl -n argocd annotate application $APP \
+
+kubectl -n argocd annotate application hello-nginx \
   'notifications.argoproj.io/subscribe.on-sync-succeeded.slack:#argocd-alerts=' --overwrite
-kubectl -n argocd annotate application $APP \
+kubectl -n argocd annotate application hello-nginx \
   'notifications.argoproj.io/subscribe.on-sync-failed.slack:#argocd-alerts=' --overwrite
-kubectl -n argocd annotate application $APP \
+kubectl -n argocd annotate application hello-nginx \
   'notifications.argoproj.io/subscribe.on-health-degraded.slack:#argocd-alerts=' --overwrite
   
 kubectl -n argocd rollout restart deployment argocd-notifications-controller
