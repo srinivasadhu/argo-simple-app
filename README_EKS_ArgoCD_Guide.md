@@ -155,31 +155,9 @@ template.slack: |
 
 ---
 
-## 10. 1-Hour Demo Narrative (Speaking Script)
-**0–10 min:**  
-- Introduce GitOps, Argo CD, and EKS.  
-- Explain architecture and flow.
 
-**10–25 min:**  
-- Show Argo CD dashboard, login, app creation.  
-- Demonstrate sync and app states.  
-
-**25–40 min:**  
-- Simulate RBAC restriction (Viewer denied sync).  
-- Perform manual `kubectl delete` to simulate drift.  
-- Show Argo CD detecting drift and self-heal.
-
-**40–50 min:**  
-- Trigger sync → observe Slack alerts.  
-- Display OutOfSync → Synced transitions in Slack.
-
-**50–60 min:**  
-- Summarize GitOps advantages.  
-- Emphasize audit visibility and automation benefits.  
-- Q&A.
 
 ---
-
 ## 11. Benefits Recap
 | Feature | Benefit |
 |----------|----------|
