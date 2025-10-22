@@ -9,7 +9,9 @@ It includes end-to-end steps for setup, RBAC enforcement, drift detection, Slack
 ## 2. Architecture Diagram
 The architecture integrates **GitHub**, **Argo CD**, **Amazon EKS**, **AWS IAM**, **CloudWatch**, **CloudTrail**, and **Slack** to deliver a full GitOps workflow with security, observability, and automation.
 
-![EKS ArgoCD AWS Diagram](A_detailed_digital_architecture_diagram_illustrate.png)
+  
+
+<img width="975" height="650" alt="image" src="https://github.com/user-attachments/assets/61887b12-baf7-4549-988f-2a74f79c3fbe" />
 
 **Figure 1:** AWS-style architecture showing developer commits → Argo CD GitOps sync → EKS deployment → Slack alerts → CloudWatch/CloudTrail observability.
 
