@@ -1,3 +1,52 @@
+Update the Kubernetes Secret (base64-encoding is done for you by kubectl):
+
+kubectl -n argocd create secret generic argocd-notifications-secret \
+  --from-literal=slack-token='xoxb-your-real-bot-token' \
+  --dry-run=client -o yaml | kubectl apply -f -
+
+Ensure your ConfigMap uses the token
+data:
+  service.slack: |
+    token: $slack-token
+
+kubectl -n argocd apply -f argocd-notifications-cm.yaml
+restart
+kubectl -n argocd rollout restart deployment argocd-notifications-controller
+
+The subscription must be under metadata.annotations of the Application (not under spec)
+
+metadata:
+  name: guestbook-with-annotations
+  annotations:
+    notifications.argoproj.io/subscribe.on-deployed.slack: argocd-alerts-test
+Make a new commit or hit SYNC to produce a fresh Succeeded + Healthy state.
+
+Watch logs:
+kubectl -n argocd logs deploy/argocd-notifications-controller -f | egrep -i 'send|slack|error|failed'
+
+
+Quick sanity template (minimal working CM)
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.slack: |
+    token: $slack-token
+  template.app-deployed: |
+    message: |
+      :white_check_mark: *{{.app.metadata.name}}* is *{{.app.status.health.status}}* and *{{.app.status.sync.status}}*
+      <{{.context.argocdUrl}}/applications/{{.app.metadata.name}}|Open in Argo CD>
+  trigger.on-deployed: |
+    - when: app.status.operationState.phase in ['Succeeded'] && app.status.health.status == 'Healthy'
+      oncePer: app.status.operationState.syncResult.revision
+      send: [app-deployed]
+
+------
+
 kubectl -n argocd apply -f - <<'YAML'
 apiVersion: v1
 kind: ConfigMap
