@@ -1,8 +1,9 @@
 # EKS Cluster Management with Argo CD and CloudWatch Observability
 
 Walkthrough and operational README describing how we manage Kubernetes workloads on Amazon EKS using Argo CD (GitOps) and CloudWatch observability, with alerting into Slack and Microsoft Teams.
+<img width="864" height="583" alt="image" src="https://github.com/user-attachments/assets/d8188c04-ce1a-49c0-bcb2-8723b4404df9" />
 
-![Alt text](./images/architecture.png)
+
 
 This document covers:
 - High level architecture
