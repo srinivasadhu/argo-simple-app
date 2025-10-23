@@ -268,17 +268,5 @@ Example alerting flow:
 
 ---
 
-## 11. Maintainers & Contact
-
-Maintainer: srinivasadhu  
-Email: (add your contact)  
-Repo: (link to repository / docs)
-
----
-
-## 12. Next steps (suggested)
-
-- Add concrete IaC examples (Terraform / eksctl) for cluster provisioning to this repo.
-- Add a sample Argo CD Notification templates repository for Slack/Teams and Ops runbooks.
-- Provide scripts to provision the Monitor Account observability stack.
-- Document onboarding checklist for new teams to onboard their apps to Argo CD + CloudWatch.
+ 
+ 
