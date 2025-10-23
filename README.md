@@ -2,6 +2,8 @@
 
 Walkthrough and operational README describing how we manage Kubernetes workloads on Amazon EKS using Argo CD (GitOps) and CloudWatch observability, with alerting into Slack and Microsoft Teams.
 
+![Alt text](./images/architecture.png)
+
 This document covers:
 - High level architecture
 - Developer workflow (Git → Argo CD → EKS)
@@ -279,11 +281,3 @@ Repo: (link to repository / docs)
 - Add a sample Argo CD Notification templates repository for Slack/Teams and Ops runbooks.
 - Provide scripts to provision the Monitor Account observability stack.
 - Document onboarding checklist for new teams to onboard their apps to Argo CD + CloudWatch.
-
----
-
-License: Add your preferred license (e.g., MIT) and replace placeholders above with repo-specific URLs, account IDs, and secrets handling instructions.
-
-If you want, I can:
-- generate a version of this README tailored to a specific repository (give me the repo URL), or
-- produce the exact Argo CD ConfigMap, GitHub Actions workflow, and Terraform/eksctl example for your environment (tell me which IaC tool you use and the AWS Account IDs/regions to target).
