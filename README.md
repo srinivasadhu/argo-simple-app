@@ -85,25 +85,5 @@ Recovery Strategies:
 - Use Git revert to roll back changes.
 - Enable automated rollback on failure.
 - Configure alerts for drift and sync failure to ensure proactive response.
-10. 1-Hour Demo Speaking Script
-0–10 min: Introduction and Architecture Overview
-- Explain EKS and Argo CD integration.
-- Walk through architecture diagram showing GitHub to Slack flow.
 
-10–25 min: Argo CD Setup and UI Walkthrough
-- Show installed Argo CD dashboard.
-- Demonstrate login and app creation.
-- Highlight RBAC user access (Admin vs Viewer).
 
-25–40 min: RBAC and Drift Simulation
-- Show unauthorized viewer trying to sync (blocked).
-- Perform a manual kubectl change to simulate drift.
-- Demonstrate drift detection and auto-heal.
-
-40–50 min: Slack Notifications and Alerts
-- Trigger deployment and show Slack messages.
-- Show Slack alerts for OutOfSync and recovery events.
-
-50–60 min: Summary and Q&A
-- Recap automation flow.
-- Highlight audit traceability and team benefits.
